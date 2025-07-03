@@ -15,15 +15,21 @@ try {
             break;
 
         // Pages publiques
-        case 'books':
+        case 'books-list':
             break;
-        case 'singlebook':
+        case 'book-detail':
+            break;
+        case 'messages':
             break;
         case 'signup':
             break;
         case 'signin':
             break;
         case 'account':
+            break;
+        case 'privacy':
+            break;
+        case 'legal':
             break;
         
         // Réservé aux utilisateurs connectés

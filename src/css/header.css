@@ -1,0 +1,81 @@
+header{
+    background-color: var(--light-gray);
+}
+.header{
+    width: 1100px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    gap: 100px;
+}
+
+.header .logo a{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+}
+.header .logo a .logo-icon{
+    background-color: var(--primary);
+    border-radius: 8px;
+    position: relative;
+    width: 51px;
+    height: 51px;
+    color: var(--white);
+    font-size: 26px;
+    font-family: 'Playfair Display', sans-serif;
+    font-weight: 800;
+}
+.header .logo a .logo-icon span:nth-child(1){
+    position: absolute;
+    top: 4px;
+    left: 8px;
+}
+.header .logo a .logo-icon span:nth-child(2){
+    position: absolute;
+    bottom: 4px;
+    right: 8px;
+}
+.header .logo a h1{
+    font-size: 20px;
+    font-family: 'Playfair Display', sans-serif;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.header nav{
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header nav ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+.header nav ul li{
+    list-style: none;
+    padding: 0;
+}
+.header nav ul li a{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    gap: 4px;
+}
+.header nav ul li a img{
+    width: 14px;
+    height: 14px;
+}
+.header nav ul li a .nbOfMsg{
+    background-color: var(--dark-gray);
+    width: fit-content;
+    height: fit-content;
+    color: var(--white);
+    padding: 0px 3px;
+    border-radius: 100px;
+}
