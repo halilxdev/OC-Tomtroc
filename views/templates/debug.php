@@ -68,3 +68,12 @@
         </table>
     </div>
 </section>
+
+<section class="debug-section">
+    <div class="container">
+        <h2>Livre aléatoire</h2>
+        <pre>
+            <?=print_r($randombook)?>
+        </pre>
+    </div>
+</section>

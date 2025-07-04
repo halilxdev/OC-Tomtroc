@@ -29,7 +29,7 @@
             </a></li>
         </ul>
         <ul>
-            <?php if(isset($_SESSION['is_loggend'])){ ?>
+            <?php if(isset($_SESSION['is_logged'])){ ?>
             <li><a href="./index.php?action=messages">
                 <img src="./src/icons/chatbubble-outline.svg">    
                 Messagerie
@@ -43,8 +43,12 @@
                 <img src="./src/icons/person-outline.svg">
                 Mon compte
             </a></li>
+            <li><a href="./index.php?action=log-out">
+                <img src="./src/icons/log-out-outline.svg">
+                Se déconnecter
+            </a></li>
             <?php } else { ?>
-            <li><a href="./index.php?action=signin">
+            <li><a href="./index.php?action=login">
                 Connexion
             </a></li>
             <?php } ?>

@@ -11,6 +11,8 @@ class AdminController
         $bookManager = new BookManager();
         $books = $bookManager->getAllBooks();
         $books = array_slice($books, 0, 20);
+        
+        $randomBook = $bookManager->getRandomBook();
 
         $userManager = new UserManager();
         $users = $userManager->getAllUsers();
@@ -36,8 +38,9 @@ class AdminController
 
         $view = new View("Debug");
         $view->render("debug", [
-            'books' => $booklist,
-            'users' => $users
+            'books'         => $booklist,
+            'users'         => $users,
+            'randombook'    => $randomBook
         ]);
     }
 }

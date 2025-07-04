@@ -31,10 +31,12 @@ table{
 }
 
 table th{
-    padding: 10px;
+    padding: 5px;
+    height: 50px;
 }
 table td{
     padding: 5px;
+    text-align: left;
 }
 
 table tr td{

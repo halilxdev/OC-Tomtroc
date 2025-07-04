@@ -43,6 +43,8 @@ try {
             break;
         
         // Réservé aux utilisateurs connectés
+        case 'log-out': 
+            break;
         case 'update-account': 
             break;
         case 'delete-account': 
@@ -61,5 +63,5 @@ try {
     }
 } catch (Exception $e) {
     $errorView = new View('Erreur');
-    $errorView->render('errorPage', ['errorMessage' => $e->getMessage()]);
+    $errorView->render('error-page', ['errorMessage' => $e->getMessage()]);
 }
