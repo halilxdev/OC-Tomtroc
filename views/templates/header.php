@@ -23,8 +23,13 @@
             <li><a href="./index.php?action=books-list">
                 Nos livres à l'échange
             </a></li>
+            <li><a href="./index.php?action=debug">
+                <img src="./src/icons/code-slash-outline.svg">   
+                Debug
+            </a></li>
         </ul>
         <ul>
+            <?php if(isset($_SESSION['is_loggend'])){ ?>
             <li><a href="./index.php?action=messages">
                 <img src="./src/icons/chatbubble-outline.svg">    
                 Messagerie
@@ -38,9 +43,11 @@
                 <img src="./src/icons/person-outline.svg">
                 Mon compte
             </a></li>
+            <?php } else { ?>
             <li><a href="./index.php?action=signin">
                 Connexion
             </a></li>
+            <?php } ?>
         </ul>
 
     </nav>

@@ -9,13 +9,23 @@ $action = Utils::request('action', 'home');
 
 try {
     switch ($action) {
-        case 'home':
-            $pageManager = new PageController();
-            $pageManager->showHome();
+
+        // Pages admin
+
+        case 'debug':
+            $page = new AdminController();
+            $page->showDebug();
             break;
 
         // Pages publiques
+
+        case 'home':
+            $page = new BookController();
+            $page->showHome();
+            break;
         case 'books-list':
+            $page = new BookController();
+            $page->showList();
             break;
         case 'book-detail':
             break;

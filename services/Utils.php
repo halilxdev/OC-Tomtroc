@@ -7,6 +7,11 @@
  */
 class Utils {
 
+    public static function formatDate(\DateTime $date): string {
+        return $date->format('d/m/Y');
+    }
+
+
     /**
      * Redirige vers une URL.
      * @param string $action : l'action que l'on veut faire (correspond aux actions dans le routeur).

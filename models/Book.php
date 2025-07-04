@@ -10,6 +10,7 @@ class Book extends AbstractEntity
 	private string $description = "";
 	private string $author = "";
 	private string $image = "";
+	private int $user;
 	private ?DateTime $creation_date = null;
 
 	
@@ -69,4 +70,14 @@ class Book extends AbstractEntity
 	{
 	    return $this->creation_date;
 	}
+
+	public function setCreatedBy(int $created_by) : void 
+	{
+		$this->user = $created_by;
+	}
+	public function getCreatedBy() : int 
+	{
+		return $this->user;
+	}
+
 }

@@ -17,7 +17,11 @@
     <link rel="stylesheet" href="./src/css/style.css">
     <link rel="stylesheet" href="./src/css/header.css">
     <link rel="stylesheet" href="./src/css/footer.css">
-    <link rel="stylesheet" href="./src/css/home.css">
+    <?php if(isset($_GET['action'])) { // Ce code permet d'appeler   automatiquement le CSS
+        echo '<link rel="stylesheet" href="./src/css/'.$_GET['action'].'.css">';
+    }else{
+        echo '<link rel="stylesheet" href="./src/css/home.css">';
+    }?> 
 </head>
 
 <body>
@@ -25,8 +29,8 @@
         <?php require './views/templates/header.php';?>
     </header>
 
-    <main>    
-        <?= $content /* Ici est affiché le contenu réel de la page. */ ?>
+    <main>
+        <?= $content ?>
     </main>
     
     <footer>

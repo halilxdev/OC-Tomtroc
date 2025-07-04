@@ -2,5 +2,26 @@
 
 class BookController 
 {
-
+    /**
+     * Affiche la page d'accueil.
+     * @return void
+     */
+    public function showHome() : void
+    {
+        $bookManager = new BookManager();
+        $books = $bookManager->getAllBooks();
+        $view = new View("Accueil");
+        $view->render("home", ['books' => $books]);
+    }
+    /**
+     * Affiche la page d'accueil.
+     * @return void
+     */
+    public function showList() : void
+    {
+        $bookManager = new BookManager();
+        $books = $bookManager->getAllBooks();
+        $view = new View("Nos livres");
+        $view->render("books-list", ['books' => $books]);
+    }
 }

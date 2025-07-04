@@ -1,0 +1,78 @@
+.debug-section{
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 50px;
+    padding: 50px 20px;
+}
+.debug-section:nth-child(2n+1){
+    background-color: var(--light-gray);
+}
+.debug-section .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 50px;
+    margin: 0 auto;
+    width: 900px;
+}
+h2{
+    font-family: 'Playfair Display', sans-serif;
+    font-size: 26px;
+}
+    
+table{
+    border-spacing: 0;
+    width: fit-content;
+    max-width: 100%;
+}
+
+table th{
+    padding: 10px;
+}
+table td{
+    padding: 5px;
+}
+
+table tr td{
+    border-bottom: solid 1px var(--text-gray);
+}
+
+table thead{
+    background-color: var(--primary);
+    color: var(--white);
+}
+table thead tr th{
+    text-align: left;
+}
+
+.profile-picture{
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 100px;
+}
+.profile-picture img{
+    width: 100%;
+    height: auto;
+}
+.book-cover{
+    width: 30px;
+    height: 50px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+}
+.book-cover img{
+    width: 100%;
+    height: auto;
+}
