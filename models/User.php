@@ -5,6 +5,7 @@ class User extends AbstractEntity
 	private string $username = "";
 	private string $email = "";
 	private string $profile_picture = "";
+	private string $password = "";
 	private ?DateTime $created_at = null;
 
 	
@@ -46,5 +47,14 @@ class User extends AbstractEntity
 	{
 	    return $this->created_at;
 	}
+
+	public function setPassword(string $password) : void 
+    {
+        $this->password = $password;
+    }
+    public function getPassword() : string 
+    {
+        return $this->password;
+    }
 
 }

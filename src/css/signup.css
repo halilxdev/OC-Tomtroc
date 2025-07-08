@@ -1,0 +1,91 @@
+.signup{
+    width: 100%;
+    height: var(--full-page-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    overflow: hidden;
+}
+
+.image-div{
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.image-div img{
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%
+}
+
+.form-div{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 30px;
+    padding: 100px;
+}
+
+h2{
+    font-family: 'Playfair Display', sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 30px;
+    width: 322px;
+    height: fit-content;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 10px;
+    width: 100%;
+    height: fit-content;
+}
+
+input, button{
+    width: 100%;
+}
+
+input{
+    height: 50px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: var(--white);
+    border: solid 1px var(--white);
+    border-radius: 6px;
+    outline: none;
+    padding: 10px;
+}
+label{
+    font-family: 'Inter', serif;
+    font-size: 14px;
+    color: var(--text-gray);
+}
+.classic-button{
+    width: 100%;
+}
+
+.dontHaveAccount{
+    font-size: 14px;
+    font-family: 'Inter', serif;
+    font-weight: 400;
+    color: var(--dark-gray);
+}

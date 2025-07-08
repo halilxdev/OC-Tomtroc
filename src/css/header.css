@@ -67,6 +67,9 @@ header{
     align-items: center;
     gap: 4px;
 }
+.header nav ul li a.boldlink{
+    font-weight: 600;
+}
 .header nav ul li a img{
     width: 14px;
     height: 14px;

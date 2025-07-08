@@ -17,20 +17,51 @@
     <nav>
 
         <ul>
-            <li><a href="./">
+            <?php 
+                $boldlinkhome = "";
+                $boldlinkbookslist = "";
+                $boldlinkdebug = "";
+                $boldlinklogin = "";
+                $boldlinkaccount = "";
+                $boldlinkmsg = "";
+                if(isset($_GET['action'])){
+                    switch($_GET['action']){
+                        case('books-list') :
+                            $boldlinkbookslist = 'class="boldlink"';
+                            break;
+                        case('debug') :
+                            $boldlinkdebug = 'class="boldlink"';
+                            break;
+                        case('login') :
+                            $boldlinklogin = 'class="boldlink"';
+                            break;
+                        case('account') :
+                            $boldlinkaccount = 'class="boldlink"';
+                            break;
+                        case('messages') :
+                            $boldlinkmsg = 'class="boldlink"';
+                            break;
+                    }
+                }else{
+                    $boldlinkhome = 'class="boldlink"';
+                }
+            ?>
+
+            <li><a href="./" <?=$boldlinkhome?> >
                 Accueil
             </a></li>
-            <li><a href="./index.php?action=books-list">
+            <li><a href="./index.php?action=books-list" <?=$boldlinkbookslist?> >
                 Nos livres à l'échange
             </a></li>
-            <li><a href="./index.php?action=debug">
+            <li><a href="./index.php?action=debug" <?=$boldlinkdebug?> >
                 <img src="./src/icons/code-slash-outline.svg">   
                 Debug
             </a></li>
+
         </ul>
         <ul>
-            <?php if(isset($_SESSION['is_logged'])){ ?>
-            <li><a href="./index.php?action=messages">
+            <?php if(isset($_SESSION['user'])){ ?>
+            <li><a href="./index.php?action=messages" <?=$boldlinkmsg?>>
                 <img src="./src/icons/chatbubble-outline.svg">    
                 Messagerie
                 <?php 
@@ -39,7 +70,7 @@
                     }
                 ?>
             </a></li>
-            <li><a href="./index.php?action=account">
+            <li><a href="./index.php?action=profile&id=<?=$_SESSION['idUser']?>" <?=$boldlinkaccount?>>
                 <img src="./src/icons/person-outline.svg">
                 Mon compte
             </a></li>
@@ -48,7 +79,7 @@
                 Se déconnecter
             </a></li>
             <?php } else { ?>
-            <li><a href="./index.php?action=login">
+            <li><a href="./index.php?action=login" <?=$boldlinklogin?>>
                 Connexion
             </a></li>
             <?php } ?>

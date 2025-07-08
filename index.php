@@ -28,12 +28,24 @@ try {
             $page->showList();
             break;
         case 'book-detail':
-            break;
-        case 'messages':
+            $page = new BookController();
+            $page->showBook();
             break;
         case 'signup':
+            $page = new UserController();
+            $page->showSignup();
             break;
-        case 'signin':
+        case 'login':
+            $page = new UserController();
+            $page->showLogin();
+            break;
+        case 'connectUser':
+            $page = new UserController();
+            $page->connectUser();
+            break;
+        case 'profile':
+            $page = new UserController();
+            $page->showProfile();
             break;
         case 'account':
             break;
@@ -44,6 +56,8 @@ try {
         
         // Réservé aux utilisateurs connectés
         case 'log-out': 
+            $page = new UserController();
+            $page->disconnectUser();
             break;
         case 'update-account': 
             break;
@@ -56,6 +70,8 @@ try {
         case 'delete-book': 
             break;
         case 'message': 
+            break;
+        case 'send-message':
             break;
 
         default:

@@ -50,15 +50,64 @@ class BookController
             'randombook' => $randomBookArray
         ]);
     }
-    /**
-     * Affiche la page d'accueil.
-     * @return void
-     */
+
+
+
     public function showList() : void
     {
         $bookManager = new BookManager();
         $books = $bookManager->getAllBooks();
+        
+        $userManager = new UserManager();
+
+        $books = array_slice($books, 0, 16);
+        $booklist = [];
+        foreach($books as $b){
+            $actualUser = $userManager->getUserById($b->getCreatedBy());
+            $actualUserUsername = $actualUser->getUsername();
+            $booklist[] = 
+            [
+                'id'                    => $b->getId(),
+                'cover_image'           => $b->getCoverImage(),
+                'title'                 => $b->getTitle(),
+                'author'                => $b->getAuthor(),
+                'uploader_username'     => $actualUserUsername,
+                'creation_date'         => $b->getCreatedAt()
+            ];
+        }
+        usort($booklist, fn($a, $b) => $b['creation_date'] <=> $a['creation_date']);
+
         $view = new View("Nos livres");
-        $view->render("books-list", ['books' => $books]);
+        $view->render("books-list", [
+            'books' => $booklist
+        ]);
     }
+
+    public function showBook() : void
+    {
+        $bookManager = new BookManager();
+        $book = $bookManager->getBookById($_GET['id']);
+        
+        $userManager = new UserManager();
+
+        $bookUser = $userManager->getUserById($book->getCreatedBy());
+        $actualUserUsername = $bookUser->getUsername();
+
+        $bookDetail['id'] = $book->getId();
+        $bookDetail['title'] = $book->getTitle();
+        $bookDetail['author'] = $book->getAuthor();
+        $bookDetail['cover'] = $book->getCoverImage();
+        $bookDetail['description'] = $book->getDescription(255);
+        $bookDetail['status'] = $book->getStatus();
+        $bookDetail['creation_date'] = $book->getCreatedAt();
+        $bookDetail['uploader_id'] = $bookUser->getId();
+        $bookDetail['uploader_username'] = $bookUser->getUsername();
+        $bookDetail['uploader_image'] = $bookUser->getProfilePicture();
+
+        $view = new View("Nos livres");
+        $view->render("book-detail", [
+            'book' => $bookDetail
+        ]);
+    }
+
 }

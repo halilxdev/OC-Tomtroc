@@ -1,22 +1,43 @@
-<?php
-    /**
-     * Affichage de la page d'accueil. 
-     */
-?>
-
 <section class="books-list">
+
     <div class="container">
-        <h2>La liste des livres</h2>
-        <div class="list">
-            <?php foreach($books as $b){
-                echo '<div class="book"><a href="./index.php?action=book&id='.$b->getId().'">';
-                echo '<div class="cover-image">';
-                echo '<img src="'.$b->getCoverImage().'">';
-                echo '</div>';
-                echo '<p class="title">'.$b->getTitle().'</p>';
-                echo '<p class="author">'.$b->getAuthor().'</p>';
-                echo '</a></div>';
-            }?>
+
+        <div class="books-list-header">
+
+            <h2>Nos livres à l'échange</h2>
+
+            <form method="get" action="index.php">
+                <input type="hidden" name="action" value="listBooks">
+                <input type="text" name="search" placeholder="Rechercher un livre">
+                <button type="submit"></button>
+            </form>
+
         </div>
+
+        <div class="list">
+
+            <?php foreach($books as $b){ ?>
+
+                <a href="./index.php?action=book-detail&id=<?=$b['id']?>">
+                    <article class="book">
+
+                        <div class="book-cover">
+                            <img src="<?=$b['cover_image']?>">
+                        </div>
+
+                        <div class="infos">
+                            <h3 class="title"><?=$b['title']?></h3>
+                            <p class="author"><?=$b['author']?></p>
+                            <p class="seller">Vendu par : <span><?=$b['uploader_username']?></span></p>
+                        </div>
+
+                    </article>
+                </a>
+
+            <?php } ?>
+            
+        </div>
+
     </div>
+
 </section>
