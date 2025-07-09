@@ -44,8 +44,12 @@ try {
         case 'account':
             break;
         case 'privacy':
+            $page = new BookController();
+            $page->showPrivacy();
             break;
         case 'legal':
+            $page = new BookController();
+            $page->showLegal();
             break;
         
         // Réservé aux utilisateurs connectés
@@ -58,6 +62,10 @@ try {
         case 'delete-account': 
             break;
         case 'create-book': 
+            break;
+        case 'edit-book':
+            $page = new BookController();
+            $page->editBook();
             break;
         case 'update-book': 
             break;

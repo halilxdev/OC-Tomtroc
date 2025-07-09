@@ -57,6 +57,12 @@
         </ul>
         <ul>
             <?php if(isset($_SESSION['user'])){ ?>
+
+            <!-- <li><a class="addCTAheader" href="./index.php?action=add-book" <?=$boldlinkaccount?>>
+                <img src="./src/icons/add-outline.svg">
+                Ajouter
+            </a></li> -->
+
             <li><a href="./index.php?action=messages" <?=$boldlinkmsg?>>
                 <img src="./src/icons/chatbubble-outline.svg">    
                 Messagerie
@@ -78,6 +84,7 @@
             <li><a href="./index.php?action=login" <?=$boldlinklogin?>>
                 Connexion
             </a></li>
+
             <?php } ?>
         </ul>
 

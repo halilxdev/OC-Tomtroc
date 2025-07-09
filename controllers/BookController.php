@@ -109,5 +109,45 @@ class BookController
             'book' => $bookDetail
         ]);
     }
+    public function editBook() : void
+    {
+        Utils::checkIfUserIsConnected();
+
+        $bookManager = new BookManager();
+        $book = $bookManager->getBookById($_GET['id']);
+        
+        $userManager = new UserManager();
+
+        $bookUser = $userManager->getUserById($book->getCreatedBy());
+
+        $bookDetail['id'] = $book->getId();
+        $bookDetail['title'] = $book->getTitle();
+        $bookDetail['author'] = $book->getAuthor();
+        $bookDetail['cover'] = $book->getCoverImage();
+        $bookDetail['description'] = $book->getDescription(255);
+        $bookDetail['status'] = $book->getStatus();
+        $bookDetail['creation_date'] = $book->getCreatedAt();
+        $bookDetail['uploader_id'] = $bookUser->getId();
+
+        if($bookDetail['uploader_id'] !== $_SESSION['idUser']){
+            Utils::redirect("home");
+        }
+
+        $view = new View("Édition d'un livre");
+        $view->render("book-edit", [
+            'book' => $bookDetail
+        ]);
+    }
+
+    public function showPrivacy() : void
+    {
+        $view = new View("Politique de confidentialité");
+        $view->render("privacy");
+    }
+    public function showLegal() : void
+    {
+        $view = new View("Mentions légales");
+        $view->render("legal");
+    }
 
 }

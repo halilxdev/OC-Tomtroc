@@ -18,8 +18,8 @@ class UserController
     {
         if(isset($_GET['id'])){
             $askedId = $_GET['id'];
+
             $userManager = new UserManager();
-            
             $user = $userManager->getUserById($_GET['id']);
             $user_id = $user->getId();
             $user_username = $user->getUsername();
@@ -45,7 +45,7 @@ class UserController
                     'title'         => $b->getTitle(),
                     'status'        => $b->getStatus(),
                     'author'        => $b->getAuthor(),
-                    'description'   => $b->getDescription(50)
+                    'description'   => $b->getDescription(100)
                 ];
             }
         }
@@ -65,15 +65,6 @@ class UserController
             'user' => $user,
             'user_books' => $booksArray
         ]);
-        }
-    }
-
-
-
-    private function checkIfUserIsConnected() : void
-    {
-        if (!isset($_SESSION['user'])) {
-            Utils::redirect("login");
         }
     }
 

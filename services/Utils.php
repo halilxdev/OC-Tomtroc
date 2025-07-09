@@ -7,6 +7,14 @@
  */
 class Utils {
 
+
+    public static function checkIfUserIsConnected() : void
+    {
+        if (!isset($_SESSION['user'])) {
+            Utils::redirect("login");
+        }
+    }
+
     public static function formatDate(\DateTime $date): string {
         return $date->format('d/m/Y');
     }

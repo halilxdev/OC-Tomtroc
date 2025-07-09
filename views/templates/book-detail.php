@@ -34,7 +34,7 @@
             </div>
 
             <div class="uploader">
-                <a href="./index.php?action=profile-detail&id=<?=$book['uploader_id']?>">
+                <a href="./index.php?action=profile&id=<?=$book['uploader_id']?>">
                     <article>
                         <img src="<?=$book['uploader_image']?>">
                         <p><?=$book['uploader_username']?></p>

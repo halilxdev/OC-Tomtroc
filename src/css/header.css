@@ -55,7 +55,7 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 30px;
 }
 .header nav ul li{
     list-style: none;
@@ -81,4 +81,21 @@ header{
     color: var(--white);
     padding: 0px 3px;
     border-radius: 100px;
+}
+
+.addCTAheader{
+    padding: 6px 12px;
+    background-color: var(--primary);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 6px;
+    padding-left: 6px;
+}
+.addCTAheader img{
+    width: 18px;
+    height: 18px;
+    filter: invert(1);
 }

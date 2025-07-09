@@ -1,0 +1,9 @@
+<section class="legal">
+
+    <h2>Mentions légales</h2>
+
+    <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio animi voluptates est repellendus inventore neque modi assumenda dolorem soluta in unde saepe voluptatibus voluptate, tenetur necessitatibus ipsum perspiciatis culpa commodi aliquid minus doloremque expedita ullam qui. Velit odio tenetur facilis ducimus dolores fugiat sapiente sed officiis nostrum hic recusandae consectetur dolorum, repellendus fugit molestias vel quidem. Ex incidunt voluptas nam reiciendis in deserunt, maiores repudiandae rem velit possimus eos necessitatibus temporibus ipsam aspernatur quaerat cupiditate fuga quibusdam sit? Atque debitis iusto error fuga quidem adipisci quae voluptas! Blanditiis in unde eius, repellendus laborum aspernatur magni. Reiciendis vero reprehenderit sunt porro eos debitis totam. Quisquam, consequuntur illo ab debitis eum impedit beatae, cumque modi commodi accusantium totam fugit unde at nihil obcaecati laboriosam amet sequi facere corrupti dolor voluptas laborum magnam. Quaerat quis, quos magnam repudiandae pariatur ab, accusamus architecto doloribus labore vel eos sit enim ipsam ipsa! Labore at illum illo quam nihil facere tempore tenetur vel cum? Esse porro natus quas minus omnis placeat accusamus vitae asperiores atque, inventore officiis cupiditate culpa repellendus, voluptatum ab odit. Qui labore dolorem quam corporis doloremque nisi debitis, deleniti cupiditate nam mollitia ipsam veritatis asperiores. Cupiditate sint ullam recusandae harum esse illo rem! Libero iure accusantium expedita dignissimos exercitationem ea ullam sit vel quidem, cum autem ipsum illo rem ab in dolorem dolore. Ducimus ea iure quia doloribus exercitationem? In illo repellendus accusantium voluptas hic? Officiis libero ullam aspernatur modi ea recusandae? Omnis, dolorem. Nesciunt totam mollitia tempora ea perferendis quod est suscipit!
+    </p>
+
+</section>

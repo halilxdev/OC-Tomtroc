@@ -12,12 +12,21 @@
     overflow: hidden;
 }
 
+.page-title{
+    font-family: 'Playfair Display', sans-serif;
+    font-size: 26px;
+    font-weight: 400;
+    margin: 0px auto;
+    padding: 30px 0;
+    width: var(--menu-width);
+}
+
 .profile-infos{
     width: var(--menu-width);
     height: fit-content;
     display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: stretch;
     gap: 30px;
 }
 
@@ -97,4 +106,167 @@
 .container-profile .bottom-part .nbOfBooks img{
     width: 14px;
     height: 14px;
+}
+
+.container-updater{
+    flex-grow: 1;
+    background-color: var(--white);
+    padding: 50px;
+    border-radius: 20px;
+}
+.container-updater h2{
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Inter', serif;
+    width: 322px;
+    margin: 0 auto;
+}
+.container-updater form{
+    width: 322px;
+    margin: 0 auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    gap: 20px;
+}
+.container-updater form .form-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 10px;
+}
+.container-updater form .form-container:nth-last-child(2){
+    margin-bottom: auto;
+}
+.container-updater form .form-container:nth-last-child(1){
+    margin-top: auto;
+}
+.container-updater form .form-container input, button{
+    width: 100%;
+}
+
+.container-updater form .form-container input{
+    height: 50px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: #EDF2F6;
+    border: solid 1px #F0F0F0;
+    border-radius: 6px;
+    outline: none;
+    padding: 10px;
+}
+.container-updater form .form-container label{
+    font-family: 'Inter', serif;
+    font-size: 14px;
+    color: var(--text-gray);
+}
+
+
+.profile-books{
+    width: var(--menu-width);
+    height: fit-content;
+}
+
+.container-books{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 20px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.container-books table{
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+}
+.container-books table thead{
+    background-color: var(--white);
+}
+.container-books table thead tr th{
+    vertical-align: bottom;
+    padding-bottom: 10px;
+    text-align: left;
+}
+.container-books table thead tr th{
+    padding: 20px;
+    padding-top: 50px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.container-books table tbody tr{
+    background-color: #EDF2F6;
+}
+.container-books table tbody tr:nth-child(2n+1){
+    background-color: var(--white);
+}
+.container-books table tbody tr td{
+    padding: 20px;
+    color: var(--dark-gray);
+    width: min-content;
+}
+.container-books table tbody tr td:nth-child(2){
+    width: 200px;
+}
+.container-books table tbody tr td:nth-child(4){
+    width: 250px;
+    font-family: 'Inter', serif;
+    font-style: italic;
+    font-size: 12px;
+}
+.container-books table tbody tr td.image{
+    width: calc(78px + 40px);
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.imgcontainer{
+    width: 78px;
+    height: 78px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+}
+.container-books table tbody tr td.image .imgcontainer img{
+    width: 100%;
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%
+}
+
+.updateBook{
+    color: var(--black);
+    text-decoration: underline 1px var(--black);
+}
+.deleteBook{
+    --red: #fa3030;
+    color: var(--red);
+    text-decoration: underline 1px var(--red);
+}
+
+.bookStatus{
+    border-radius: 500px;
+    padding: 3.7px 13.31px;
+    width: fit-content;
+    height: fit-content;
+    color: white;
+}
+.statusAvailable{
+    background-color: #6DC5A1;
+}
+.statusUnavailable{
+    background-color: #C56D6D;
 }

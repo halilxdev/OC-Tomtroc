@@ -1,0 +1,25 @@
+main{
+    background-color: var(--light-gray);
+}
+.legal{
+    width: 500px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 50px;
+    margin: 0px auto;
+    padding: 50px 0;
+}
+.legal h2{
+    font-family: 'Playfair Display', sans-serif;
+    font-size: 26px;
+    font-weight: 400;
+}
+.legal p{
+    font-family: 'Inter', serif;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: justify;
+}
