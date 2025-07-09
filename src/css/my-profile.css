@@ -1,0 +1,100 @@
+.all-page{
+    width: 100%;
+    height: fit-content;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 50px;
+}
+.all-page section{
+    overflow: hidden;
+}
+
+.profile-infos{
+    width: var(--menu-width);
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 30px;
+}
+
+.container-profile{
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding: 50px;
+    gap: 50px;
+    overflow: hidden;
+    background-color: var(--white);
+    border-radius: 20px;
+    width: 547px;
+}
+.container-profile .top-part{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.container-profile .top-part img{
+    width: 143px;
+    height: 143px;
+    border-radius: 500px;
+}
+.container-profile .top-part a{
+    color: var(--text-gray);
+    text-decoration: underline 1px var(--text-gray);
+    text-underline-offset: 3px;
+    font-size: 14px;
+    text-transform: lowercase;
+}
+.container-profile hr{
+    width: 242px;
+    height: 1px;
+    background-color: var(--light-gray);
+    opacity: 0.3;
+}
+.container-profile .bottom-part{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+}
+.container-profile .bottom-part .pseudo h2{
+    font-size: 24px;
+    font-family: 'Playfair Display', sans-serif;
+    font-weight: 400;
+}
+.container-profile .bottom-part .memberSince p{
+    font-size: 14px;
+    font-family: 'Inter', serif;
+    font-weight: 400;
+    color: var(--text-gray);
+}
+.container-profile .bottom-part .h3 h3{
+    font-size: 8px;
+    font-family: 'Inter', serif;
+    font-weight: 600;
+    letter-spacing: 8%;
+    text-transform: uppercase;
+}
+.container-profile .bottom-part .nbOfBooks{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+}
+.container-profile .bottom-part .nbOfBooks img{
+    width: 14px;
+    height: 14px;
+}

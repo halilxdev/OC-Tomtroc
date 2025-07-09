@@ -1,5 +1,5 @@
 <?php
-    $nbOfUnreadMsg = 1;
+    $nbOfUnreadMsg = 14;
 ?>
 
 <div class="header">
@@ -52,10 +52,6 @@
             </a></li>
             <li><a href="./index.php?action=books-list" <?=$boldlinkbookslist?> >
                 Nos livres à l'échange
-            </a></li>
-            <li><a href="./index.php?action=debug" <?=$boldlinkdebug?> >
-                <img src="./src/icons/code-slash-outline.svg">   
-                Debug
             </a></li>
 
         </ul>

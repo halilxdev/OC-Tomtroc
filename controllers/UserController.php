@@ -19,18 +19,52 @@ class UserController
         if(isset($_GET['id'])){
             $askedId = $_GET['id'];
             $userManager = new UserManager();
+            
             $user = $userManager->getUserById($_GET['id']);
-            $username = $user->getUsername();
+            $user_id = $user->getId();
+            $user_username = $user->getUsername();
+
+            $bookManager = new BookManager();
+            $profileBooks = $bookManager->getBooksByUser($user_id);
+
+            $user = [
+                'id'            => $user->getId(),
+                'username'      => $user->getUsername(),
+                'image'         => $user->getProfilePicture(),
+                'email'         => $user->getEmail(),
+                'creation_date' => Utils::formatDate($user->getCreatedAt()),
+                'since'         => Utils::memberSince($user->getCreatedAt()),
+                'nb_books'      => $bookManager->countBooksByUser($user_id)
+            ];
+
+            $booksArray = [];
+            foreach($profileBooks as $b){
+                $booksArray[] = [
+                    'id'            => $b->getId(),
+                    'image'         => $b->getCoverImage(),
+                    'title'         => $b->getTitle(),
+                    'status'        => $b->getStatus(),
+                    'author'        => $b->getAuthor(),
+                    'description'   => $b->getDescription(50)
+                ];
+            }
         }
         if(isset($_SESSION['user'])){
             $userId = $_SESSION['idUser'];
         }
 
-        $view = new View("{$username}", ['user' => $user]);
+        $view = new View("{$user_username}");
+        
         if($askedId == $userId){
-            $view->render("my-profile");
+            $view->render("my-profile", [
+            'user' => $user,
+            'user_books' => $booksArray
+        ]);
         }else{
-            $view->render("see-profile");
+            $view->render("see-profile", [
+            'user' => $user,
+            'user_books' => $booksArray
+        ]);
         }
     }
 

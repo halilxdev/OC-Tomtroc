@@ -50,5 +50,23 @@ class BookManager extends AbstractEntityManager
         }
         return $books;
     }
+   
+    public function getBooksByUser(int $created_by) : ?array
+    {
+        $sql = "SELECT * FROM books WHERE created_by = :created_by";
+        $result = $this->db->query($sql, ['created_by' => $created_by]);
+        $books = [];
+        while ($book = $result->fetch()) {
+            $books[] = new Book($book);
+        }
+        return $books;
+    }
 
+    public function countBooksByUser(int $created_by): int
+    {
+        $sql = "SELECT COUNT(*) as count FROM books WHERE created_by = :created_by";
+        $result = $this->db->query($sql, ['created_by' => $created_by]);
+        $data = $result->fetch();
+        return (int) $data['count'];
+    }
 }

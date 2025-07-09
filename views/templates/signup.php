@@ -2,7 +2,7 @@
 
     <div class="form-div">
 
-        <h2>Connexion</h2>
+        <h2>Inscription</h2>
 
         <form action="index.php?action=signupUser" method="post">
             <div class="form-container">
@@ -18,7 +18,7 @@
                 <input type="password" name="password" id="password" required>
             </div>
             <div class="form-container">
-                <button class="submit classic-button">S'inscrire'</button>
+                <button class="submit classic-button">S'inscrire</button>
             </div>
         </form>
 

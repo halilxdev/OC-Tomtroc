@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="./src/css/header.css">
     <link rel="stylesheet" href="./src/css/footer.css">
     <link rel="stylesheet" href="./src/css/book-card.css">
-    <?php if(isset($_GET['action'])) { // Ce code permet d'appeler   automatiquement le CSS
+    <?php if(isset($_GET['action'])) { // Ce code permet d'appeler automatiquement le CSS
         echo '<link rel="stylesheet" href="./src/css/'.$_GET['action'].'.css">';
     }else{
         echo '<link rel="stylesheet" href="./src/css/home.css">';

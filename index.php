@@ -10,12 +10,6 @@ $action = Utils::request('action', 'home');
 try {
     switch ($action) {
 
-        // Pages admin
-
-        case 'debug':
-            $page = new AdminController();
-            $page->showDebug();
-            break;
 
         // Pages publiques
 

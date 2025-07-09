@@ -11,6 +11,25 @@ class Utils {
         return $date->format('d/m/Y');
     }
 
+    public static function memberSince(\DateTime $date): string {
+        $now = new \DateTime();
+        $interval = $date->diff($now);
+        if ($interval->y >= 1) {
+            return $interval->y === 1 ? '1 an' : $interval->y . ' ans';
+        }
+        if ($interval->m >= 1) {
+            return $interval->m === 1 ? '1 mois' : $interval->m . ' mois';
+        }
+        if ($interval->d >= 7) {
+            $weeks = floor($interval->d / 7);
+            return $weeks === 1 ? '1 semaine' : $weeks . ' semaines';
+        }
+        if ($interval->d >= 1) {
+            return $interval->d === 1 ? '1 jour' : $interval->d . ' jours';
+        }
+        return 'Aujourd\'hui';
+    }
+
 
     /**
      * Redirige vers une URL.
