@@ -29,6 +29,10 @@ try {
             $page = new UserController();
             $page->showSignup();
             break;
+        case 'signupUser':
+            $page = new UserController();
+            $page->signupUser();
+            break;
         case 'login':
             $page = new UserController();
             $page->showLogin();

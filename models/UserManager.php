@@ -1,13 +1,24 @@
 <?php
 
 /**
- * Classe qui gère les livres.
+ * Classe qui gère les utilisateurs.
  */
 class UserManager extends AbstractEntityManager 
 {
     public function getAllUsers() : array
     {
         $sql = "SELECT * FROM users";
+        $result = $this->db->query($sql);
+        $users = [];
+        while ($user = $result->fetch()) {
+            $users[] = new User($user);
+        }
+        return $users;
+    }
+
+    public function getAllEmails() : array
+    {
+        $sql = "SELECT email FROM users";
         $result = $this->db->query($sql);
         $users = [];
         while ($user = $result->fetch()) {
@@ -36,6 +47,16 @@ class UserManager extends AbstractEntityManager
             return new User($user);
         }
         return null;
+    }
+
+    public function newUser(string $username, string $email, string $password) : void 
+    {
+        $sql = "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)";
+        $this->db->query($sql, [
+            'username' => $username,
+            'email'    => $email,
+            'password' => password_hash($password, PASSWORD_DEFAULT)
+        ]);
     }
 
 }

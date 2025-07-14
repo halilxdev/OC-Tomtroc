@@ -89,3 +89,23 @@ label{
     font-weight: 400;
     color: var(--dark-gray);
 }
+
+.error-div{
+    background-color: var(--unavailable-color);
+    width: 100%;
+    min-height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding: 4px 10px;
+    color: var(--white);
+    font-size: 12px;
+    border-radius: 8px;
+    gap: 4px;
+}
+.error-div img{
+    width: 14px;
+    height: 14px;
+    filter: invert(1);
+}

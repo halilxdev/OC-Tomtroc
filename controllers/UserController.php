@@ -114,22 +114,52 @@ class UserController
 
     public function signupUser() : void 
     {
-        $username = Utils::request("pseudo");
+        $username = Utils::request("username");
         $email = Utils::request("email");
         $password = Utils::request("password");
+        $errorMsg = '';
+
         if (empty($username) || empty($email) || empty($password)) {
-            throw new Exception("Tous les champs sont obligatoires. 1");
+            // On vérifie si tous les champs sont complets
+            $errorMsg = "incomplete-fields";
+        }else{
+            if(strlen($username) > 21){
+                // On vérifie la longueur du pseudo
+                $errorMsg = "username-length";
+            }else{
+                $userManager = new UserManager();
+                $allEmails = $userManager->getAllEmails();
+
+                // On vérifie si l'adresse email existe dans la base de données
+                foreach ($allEmails as $a) {
+                    if ($a->getEmail() === $email) {
+                        $errorMsg = "existing-email";
+                        break;
+                    }
+                }
+                if(strlen($password) > 21){
+                    // On vérifie la longueur du mot de passe
+                    $errorMsg = "password-length";
+                }
+            }
+
         }
-        $userManager = new UserManager();
-        $user = $userManager->getUserByLogin($email);
-        $_SESSION['user'] = $user;
-        $_SESSION['idUser'] = $user->getId();
-        Utils::redirect("profile&id={$_SESSION['idUser']}");
+
+        if (!empty($errorMsg)) {
+            Utils::redirect("signup&error=" . urlencode($errorMsg));
+        }else{
+            $userManager->newUser($username, $email, $password);
+            $user = $userManager->getUserByLogin($email);
+            $_SESSION['user'] = $user;
+            $_SESSION['idUser'] = $user->getId();
+            Utils::redirect("profile&id={$_SESSION['idUser']}");
+        }
     }
 
     public function disconnectUser() : void 
     {
         unset($_SESSION['user']);
+        unset($_SESSION['idUser']);
         Utils::redirect("home");
     }
 
