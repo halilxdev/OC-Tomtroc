@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./src/css/see-profile.css">
+<link rel="stylesheet" href="./public/css/see-profile.css">
 
 <section class="profile">
 
@@ -20,7 +20,7 @@
                     <h3>Bibliothèque</h3>
                 </div>
                 <div class="nbOfBooks">
-                    <img src="./src/icons/library-outline.svg">
+                    <img src="./public/icons/library-outline.svg">
                     <?=$user['nb_books']?> livre(s)
                 </div>
                 <div class="classic-button light-button">

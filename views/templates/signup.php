@@ -29,7 +29,7 @@
     </div>
 
     <div class="image-div">
-        <img src="./src/images/signup-signin.png">
+        <img src="./public/images/signup-signin.png">
     </div>
 
 </section>

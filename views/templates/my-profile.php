@@ -3,7 +3,7 @@
     $unavailable = '<div class="bookStatus statusUnavailable">';
 ?>
 
-<link rel="stylesheet" href="./src/css/my-profile.css">
+<link rel="stylesheet" href="./public/css/my-profile.css">
 
     <h2 class="page-title">Mon compte</h2>
 
@@ -28,7 +28,7 @@
                     <h3>Bibliothèque</h3>
                 </div>
                 <div class="nbOfBooks">
-                    <img src="./src/icons/library-outline.svg">
+                    <img src="./public/icons/library-outline.svg">
                     <?=$user['nb_books']?> livre(s)
                 </div>
 

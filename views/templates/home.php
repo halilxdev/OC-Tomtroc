@@ -125,7 +125,7 @@
         </p>
 
         <div class="floating-image">
-            <img src="./src/icons/heart-handwriting.svg">
+            <img src="./public/icons/heart-handwriting.svg">
         </div>
 
     </div>

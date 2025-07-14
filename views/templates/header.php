@@ -59,12 +59,12 @@
             <?php if(isset($_SESSION['user'])){ ?>
 
             <!-- <li><a class="addCTAheader" href="./index.php?action=add-book" <?=$boldlinkaccount?>>
-                <img src="./src/icons/add-outline.svg">
+                <img src="./public/icons/add-outline.svg">
                 Ajouter
             </a></li> -->
 
             <li><a href="./index.php?action=messages" <?=$boldlinkmsg?>>
-                <img src="./src/icons/chatbubble-outline.svg">    
+                <img src="./public/icons/chatbubble-outline.svg">    
                 Messagerie
                 <?php 
                     if($nbOfUnreadMsg !== 0){
@@ -73,11 +73,11 @@
                 ?>
             </a></li>
             <li><a href="./index.php?action=profile&id=<?=$_SESSION['idUser']?>" <?=$boldlinkaccount?>>
-                <img src="./src/icons/person-outline.svg">
+                <img src="./public/icons/person-outline.svg">
                 Mon compte
             </a></li>
             <li><a href="./index.php?action=log-out">
-                <img src="./src/icons/log-out-outline.svg">
+                <img src="./public/icons/log-out-outline.svg">
                 Se déconnecter
             </a></li>
             <?php } else { ?>

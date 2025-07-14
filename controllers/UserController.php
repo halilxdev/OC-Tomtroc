@@ -3,15 +3,26 @@
 class UserController 
 {
 
-    public function showLogin() : void
+    public function showLogin(string $errors = '') : void
     {
+        if (empty($errors) && isset($_GET['error'])) {
+            $errors = htmlspecialchars($_GET['error']); // sécurité
+        }
         $view = new View("Connexion");
-        $view->render("login");
+        $view->render("login", [
+            'errorMsg' => $errors
+        ]);
     }
-    public function showSignup() : void
+
+    public function showSignup(string $errors = '') : void
     {
+        if (empty($errors) && isset($_GET['error'])) {
+            $errors = htmlspecialchars($_GET['error']); // sécurité
+        }
         $view = new View("Inscription");
-        $view->render("signup");
+        $view->render("signup", [
+            'errorMsg' => $errors
+        ]);
     }
 
     public function showProfile() : void
@@ -49,22 +60,25 @@ class UserController
                 ];
             }
         }
-        if(isset($_SESSION['user'])){
-            $userId = $_SESSION['idUser'];
-        }
 
         $view = new View("{$user_username}");
+
+        if(isset($_SESSION['user'])){
+            $userId = $_SESSION['idUser'];
+            
+        }
+
         
-        if($askedId == $userId){
+        if((isset($userId)) && ($askedId == $userId)){
             $view->render("my-profile", [
             'user' => $user,
             'user_books' => $booksArray
         ]);
         }else{
             $view->render("see-profile", [
-            'user' => $user,
-            'user_books' => $booksArray
-        ]);
+                'user' => $user,
+                'user_books' => $booksArray
+            ]);
         }
     }
 
@@ -72,21 +86,30 @@ class UserController
     {
         $email = Utils::request("email");
         $password = Utils::request("password");
+        $errorMsg = '';
+
         if (empty($email) || empty($password)) {
-            throw new Exception("Tous les champs sont obligatoires. 1");
+            $errorMsg = "incomplete-fields";
+        }else{
+            $userManager = new UserManager();
+            $user = $userManager->getUserByLogin($email);
+            if (!$user) {
+                $errorMsg = "user-doesnt-exist";
+            }else{
+                if (!password_verify($password, $user->getPassword())) {
+                    $hash = password_hash($password, PASSWORD_DEFAULT);
+                    $errorMsg = "invalid-password";
+                }
+            }
         }
-        $userManager = new UserManager();
-        $user = $userManager->getUserByLogin($email);
-        if (!$user) {
-            throw new Exception("L'utilisateur demandé n'existe pas.");
+
+        if (!empty($errorMsg)) {
+            Utils::redirect("login&error=" . urlencode($errorMsg));
+        }else{
+            $_SESSION['user'] = $user;
+            $_SESSION['idUser'] = $user->getId();
+            Utils::redirect("profile&id={$_SESSION['idUser']}");
         }
-        if (!password_verify($password, $user->getPassword())) {
-            $hash = password_hash($password, PASSWORD_DEFAULT);
-            throw new Exception("Le mot de passe est incorrect : $hash");
-        }
-        $_SESSION['user'] = $user;
-        $_SESSION['idUser'] = $user->getId();
-        Utils::redirect("profile&id={$_SESSION['idUser']}");
     }
 
     public function signupUser() : void 
