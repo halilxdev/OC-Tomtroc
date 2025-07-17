@@ -151,7 +151,7 @@
                             </td>
                             <td>
                                 <a class="updateBook" href="./index.php?action=edit-book&id=<?=$bk['id']?>">Éditer</a>
-                                <a class="deleteBook" href="./index.php?action=deleteBook&id=<?=$bk['id']?>"<?php Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer ce commentaire ?")?>">Supprimer</a>
+                                <a class="deleteBook" href="./index.php?action=deleteBook&id=<?=$bk['id']?>"<?php echo Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer ce livre ?")?>">Supprimer</a>
                             </td>
                         </tr>
                     <?php } ?>

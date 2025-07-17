@@ -57,15 +57,18 @@ class UserController
 
             $booksArray = [];
             foreach($profileBooks as $b){
+                $date = $b->getCreatedAt();
                 $booksArray[] = [
                     'id'            => $b->getId(),
                     'image'         => $b->getCoverImage(),
                     'title'         => $b->getTitle(),
                     'status'        => $b->getStatus(),
                     'author'        => $b->getAuthor(),
-                    'description'   => $b->getDescription(100)
+                    'description'   => $b->getDescription(100),
+                    'date'          => $date
                 ];
             }
+            usort($booksArray, fn($a, $b) => $b['date'] <=> $a['date']);
         }
 
         $view = new View("{$user_username}");
@@ -232,6 +235,8 @@ class UserController
                 move_uploaded_file($fileTmp, "./public/images/profile-pictures/" . $newFileName);
                 $avatar = "public/images/profile-pictures/" . $newFileName;
             }
+        }else{
+            $avatar = "https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg";
         }
 
         
