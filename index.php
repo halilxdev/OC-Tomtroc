@@ -45,7 +45,13 @@ try {
             $page = new UserController();
             $page->showProfile();
             break;
-        case 'account':
+        case 'updateUser':
+            $page = new UserController();
+            $page->updateUser();
+            break;
+        case 'listOfMsg':
+            $page = new MessageController();
+            $page->showList();
             break;
         case 'privacy':
             $page = new BookController();

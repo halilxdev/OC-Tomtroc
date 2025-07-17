@@ -58,12 +58,12 @@
         <ul>
             <?php if(isset($_SESSION['user'])){ ?>
 
-            <!-- <li><a class="addCTAheader" href="./index.php?action=add-book" <?=$boldlinkaccount?>>
+            <li><a class="addCTAheader" href="./index.php?action=add-book" <?=$boldlinkaccount?>>
                 <img src="./public/icons/add-outline.svg">
                 Ajouter
-            </a></li> -->
+            </a></li>
 
-            <li><a href="./index.php?action=messages" <?=$boldlinkmsg?>>
+            <li><a href="./index.php?action=listOfMsg" <?=$boldlinkmsg?>>
                 <img src="./public/icons/chatbubble-outline.svg">    
                 Messagerie
                 <?php 

@@ -1,0 +1,138 @@
+.book-edit{
+    background-color: var(--light-background);
+    padding: 50px 0;
+}
+
+.breadcrumbs{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+}
+.breadcrumbs .container{
+    width: var(--menu-width);
+    height: fit-content;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.breadcrumbs .container a{
+    color: var(--text-gray);
+    font-family: 'Inter', serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.titleOfPage{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+.titleOfPage .container{
+    width: var(--menu-width);
+    height: fit-content;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.titleOfPage .container h2{
+    font-family: 'Playfair Display', sans-serif;
+    font-size: 26px;
+    font-weight: 400;
+}
+
+.detail{
+    width: var(--menu-width);
+    margin: 0px auto;
+    height: fit-content;
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 100px;
+}
+h3{
+    font-family: 'Inter', serif;
+    font-size: 14px;
+    color: var(--text-gray);
+    font-weight: 400;
+}
+.bookImage, .bookInfos{
+    width: 50%;
+}
+.bookImage .title{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.bookCover{
+    width: 100%;
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.bookCover img{
+    min-width: 100%;
+    min-height: 100%;
+}
+.bookCoverUpdate{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    font-family: 'Inter', serif;
+    font-size: 12px;
+    color: var(--dark-gray);
+    text-decoration: underline 1px var(--dark-gray);
+    cursor: pointer;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 20px;
+}
+.formContainer{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 10px;
+}
+.formContainer input, .formContainer select, .formContainer textarea{
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: #EDF2F6;
+    border: solid 1px #F0F0F0;
+    stroke: none;
+    outline: none;
+    font-family: 'Inter', serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+.formContainer textarea{
+    width: 100%;
+    min-height: 200px;
+    resize: vertical;
+}
+
+.classic-button{
+    width: 322px;
+    margin: 40px 0;
+}

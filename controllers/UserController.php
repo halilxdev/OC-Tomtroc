@@ -25,8 +25,15 @@ class UserController
         ]);
     }
 
-    public function showProfile() : void
+    public function showProfile(string $errors = '', string $success = '') : void
     {
+        if (empty($success) && isset($_GET['success'])) {
+            $errors = htmlspecialchars($_GET['success']); // sécurité
+        }
+        if (empty($errors) && isset($_GET['error'])) {
+            $errors = htmlspecialchars($_GET['error']); // sécurité
+        }
+
         if(isset($_GET['id'])){
             $askedId = $_GET['id'];
 
@@ -71,8 +78,10 @@ class UserController
         
         if((isset($userId)) && ($askedId == $userId)){
             $view->render("my-profile", [
-            'user' => $user,
-            'user_books' => $booksArray
+            'user'          => $user,
+            'user_books'    => $booksArray,
+            'successMsg'    => $success,
+            'errorMsg'      => $errors
         ]);
         }else{
             $view->render("see-profile", [
@@ -153,7 +162,101 @@ class UserController
             $_SESSION['user'] = $user;
             $_SESSION['idUser'] = $user->getId();
             Utils::redirect("profile&id={$_SESSION['idUser']}");
+            $successMsg = 'valid';
+            $this->showProfile('', $successMsg);
         }
+    }
+
+    public function updateUser() : void
+    {
+        // Récupération de l'utilisateur actuel (ex: depuis la session)
+        $userManager = new UserManager();
+        $oldUser = $userManager->getUserById($_SESSION['idUser']);
+
+        // Initialisation des variables
+        $username = $oldUser->getUsername();
+        $email = $oldUser->getEmail();
+        $password = null;
+        $avatar = $oldUser->getProfilePicture();
+        $errorMsg = '';
+
+        // Récupération conditionnelle des champs du formulaire
+        if (null !== Utils::request("username")) {
+            $usernameInput = Utils::request("username");
+            if ($usernameInput !== $oldUser->getUsername()) {
+                if (strlen($usernameInput) < 3 || strlen($usernameInput) > 20) {
+                    $errorMsg = "username-length-invalid";
+                } else {
+                    $username = $usernameInput;
+                }
+            }
+        }
+
+        if (null !== Utils::request("email")) {
+            $emailInput = Utils::request("email");
+
+            if ($emailInput !== $oldUser->getEmail()) {
+                if (!filter_var($emailInput, FILTER_VALIDATE_EMAIL)) {
+                    $errorMsg = "email-invalid";
+                } else {
+                    $email = $emailInput;
+                }
+            }
+        }
+
+        if (null !== Utils::request("password") && Utils::request("password") !== '') {
+            $passwordInput = Utils::request("password");
+
+            if (strlen($passwordInput) < 3) {
+                $errorMsg = "password-too-short";
+            } else {
+                $password = password_hash($passwordInput, PASSWORD_DEFAULT);
+            }
+        }
+
+        if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
+            $fileTmp = $_FILES['avatar']['tmp_name'];
+            $fileName = $_FILES['avatar']['name'];
+            $fileSize = $_FILES['avatar']['size'];
+            $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+            $allowed = ['jpg', 'jpeg', 'png'];
+
+            if (!in_array($fileExt, $allowed)) {
+                $errorMsg = "avatar-invalid-format";
+            } elseif ($fileSize > 2 * 1024 * 1024) { // 2MB
+                $errorMsg = "avatar-too-large";
+            } else {
+                // Move the file
+                $newFileName = uniqid("avatar_") . "." . $fileExt;
+                move_uploaded_file($fileTmp, "./public/images/profile-pictures/" . $newFileName);
+                $avatar = "public/images/profile-pictures/" . $newFileName;
+            }
+        }
+
+        
+        if (!empty($errorMsg)) {
+            $this->showProfile($errorMsg);
+            exit;
+        }
+
+        $dataToUpdate = [
+            'username' => $username,
+            'email' => $email,
+            'profile_picture' => $avatar
+        ];
+
+        if ($password !== null) {
+            $dataToUpdate['password'] = $password;
+        }
+
+        // MAJ utilisateur
+        $userManager->updateUser($oldUser->getId(), $dataToUpdate);
+
+        // Redirection OK
+        $successMsg = 'valid';
+        $this->showProfile('', $successMsg);
+        
     }
 
     public function disconnectUser() : void 

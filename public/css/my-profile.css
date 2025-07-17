@@ -57,12 +57,13 @@
     height: 143px;
     border-radius: 500px;
 }
-.container-profile .top-part a{
+.container-profile .top-part .update-pfp-link{
     color: var(--text-gray);
     text-decoration: underline 1px var(--text-gray);
     text-underline-offset: 3px;
     font-size: 14px;
     text-transform: lowercase;
+    cursor: pointer;
 }
 .container-profile hr{
     width: 242px;
@@ -269,4 +270,42 @@
 }
 .statusUnavailable{
     background-color: #C56D6D;
+}
+
+
+.error-div{
+    background-color: var(--unavailable-color);
+    width: fit-content;
+    margin: 0 auto;
+    min-height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding: 4px 10px;
+    color: var(--white);
+    font-size: 12px;
+    border-radius: 8px;
+    gap: 4px;
+}
+
+.success-div{
+    background-color: var(--primary);
+    width: fit-content;
+    margin: 0 auto;
+    min-height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding: 4px 10px;
+    color: var(--white);
+    font-size: 12px;
+    border-radius: 8px;
+    gap: 4px;
+}
+.success-div img, .error-div img{
+    width: 14px;
+    height: 14px;
+    filter: invert(1);
 }

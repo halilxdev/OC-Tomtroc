@@ -124,14 +124,15 @@ class BookController
         $bookDetail['title'] = $book->getTitle();
         $bookDetail['author'] = $book->getAuthor();
         $bookDetail['cover'] = $book->getCoverImage();
-        $bookDetail['description'] = $book->getDescription(255);
+        $bookDetail['description'] = $book->getDescription();
         $bookDetail['status'] = $book->getStatus();
-        $bookDetail['creation_date'] = $book->getCreatedAt();
+        $bookDetail['creation_date'] = Utils::formatDate($book->getCreatedAt());
         $bookDetail['uploader_id'] = $bookUser->getId();
 
+        $errorMsg = [];
         if($bookDetail['uploader_id'] !== $_SESSION['idUser']){
             Utils::redirect("home");
-        }
+        } // Gestion erreur si pas le droit de modifier un livre.
 
         $view = new View("Édition d'un livre");
         $view->render("book-edit", [

@@ -59,4 +59,18 @@ class UserManager extends AbstractEntityManager
         ]);
     }
 
+    public function updateUser(int $id, array $data) : void
+    {
+        $fields = [];
+        $params = ['id' => $id];
+
+        foreach ($data as $key => $value) {
+            $fields[] = "$key = :$key";
+            $params[$key] = $value;
+        }
+
+        $sql = "UPDATE users SET " . implode(', ', $fields) . " WHERE id = :id";
+        $this->db->query($sql, $params);
+    }
+
 }

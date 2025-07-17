@@ -1,11 +1,57 @@
 <?php
     $available = '<div class="bookStatus statusAvailable">';
     $unavailable = '<div class="bookStatus statusUnavailable">';
+    
+    // Rédaction des messages d'erreurs
+    if(!empty($errorMsg)){
+        switch($errorMsg){
+            case 'incomplete-fields':
+                $errorMsg = 'Tous les champs sont obligatoires.';
+                break;
+            case 'username-length-invalid':
+                $errorMsg = 'Le pseudo choisi est trop long. Maximum 20 caractères.';
+                break;
+            case 'email-invalid':
+                $errorMsg = 'L\'adresse mail saisie appartient à un compte existant.';
+                break;
+            case 'password-too-short':
+                $errorMsg = 'Le mot de passe est trop court. Minimum 5 caractères';
+                break;
+            case 'avatar-invalid-format':
+                $errorMsg = 'L\'image de profil est invalide. Veuillez essayer une autre image.';
+                break;
+        }
+        $errorDiv = '
+            <div class="form-container error-div">
+                <img src="./public/icons/warning.svg">
+                '.$errorMsg.'
+            </div>
+        ';
+    }
+
+    // Rédaction des messages d'erreurs
+    if(!empty($successMsg)){
+        switch($successMsg){
+            case 'valid':
+                $successMsg = 'Votre profil a bien été modifié.';
+                break;
+        }
+        $successMsg = '
+            <div class="form-container success-div">
+                <img src="./public/icons/happy.svg">
+                '.$successMsg.'
+            </div>
+        ';
+    }
 ?>
 
 <link rel="stylesheet" href="./public/css/my-profile.css">
 
-    <h2 class="page-title">Mon compte</h2>
+<h2 class="page-title">Mon compte</h2>
+
+<?php if(isset($successMsg)){echo $successMsg;}?>
+
+<?php if(isset($errorDiv)){echo $errorDiv;}?>
 
 <section class="all-page">
 
@@ -14,7 +60,8 @@
         <div class="container-profile">
             <div class="top-part">
                 <img src="<?=$user['image']?>">
-                <a href="./index.php?action=updateProfilePicture&id=<?=$user['id']?>">Modifier</a>
+                <label for="avatar" class="update-pfp-link">Modifier</label>
+                <input form="update-user" style="display: none;" type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"/>
             </div>
             <hr>
             <div class="bottom-part">
@@ -39,7 +86,8 @@
 
             <h2>Vos informations personnelles</h2>
             
-            <form action="index.php?action=updateUser&id=<?=$user['id']?>" method="post">
+            <form id="update-user" action="index.php?action=updateUser&id=<?=$user['id']?>" method="post" enctype="multipart/form-data">
+
 
                 <div class="form-container">
                     <label for="email">Adresse email</label>
