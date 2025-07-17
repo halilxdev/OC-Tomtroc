@@ -9,7 +9,7 @@ class Book extends AbstractEntity
 	private string $title = "";
 	private string $description = "";
 	private string $author = "";
-	private string $image = "";
+	private $image = "";
 	private string $status = "";
 	private int $user;
 	private ?DateTime $creation_date = null;
@@ -33,11 +33,14 @@ class Book extends AbstractEntity
 		return $this->author;
 	}
 
-	public function setCoverImage(string $image) : void 
+	public function setCoverImage($image) : void 
 	{
+		if($this->image === NULL){
+			$this->image = 'https://pbs.twimg.com/profile_images/1924115918751141888/xNcKBLQq_400x400.jpg';
+		}
 		$this->image = $image;
 	}
-	public function getCoverImage() : string 
+	public function getCoverImage() 
 	{
 		return $this->image;
 	}

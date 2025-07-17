@@ -100,10 +100,10 @@ class Utils {
      * @param mixed $defaultValue : la valeur par défaut si la variable n'est pas définie.
      * @return mixed : la valeur de la variable ou la valeur par défaut.
      */
-    public static function request(string $variableName, mixed $defaultValue = null) : mixed
+    public static function request(string $variableName, mixed $defaultValue = null): mixed
     {
-        $var = htmlspecialchars($variableName);
-        return $_REQUEST[$var] ?? $defaultValue;
+        return $_REQUEST[$variableName] ?? $defaultValue;
     }
+
 
 }

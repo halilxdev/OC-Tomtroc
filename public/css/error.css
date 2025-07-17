@@ -1,0 +1,10 @@
+.error{
+    width: var(--content-width);
+    height: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 20px;
+}

@@ -45,14 +45,6 @@ try {
             $page = new UserController();
             $page->showProfile();
             break;
-        case 'updateUser':
-            $page = new UserController();
-            $page->updateUser();
-            break;
-        case 'listOfMsg':
-            $page = new MessageController();
-            $page->showList();
-            break;
         case 'privacy':
             $page = new BookController();
             $page->showPrivacy();
@@ -67,19 +59,29 @@ try {
             $page = new UserController();
             $page->disconnectUser();
             break;
-        case 'update-account': 
+        case 'updateUser':
+            $page = new UserController();
+            $page->updateUser();
             break;
-        case 'delete-account': 
+        case 'listOfMsg':
+            $page = new MessageController();
+            $page->showList();
             break;
-        case 'create-book': 
+        case 'add-book': 
+            $page = new BookController();
+            $page->showAddBook();
+            break;
+        case 'addBook':
+            $page = new BookController();
+            $page->addBook();
             break;
         case 'edit-book':
             $page = new BookController();
             $page->editBook();
             break;
-        case 'update-book': 
-            break;
-        case 'delete-book': 
+        case 'deleteBook': 
+            $page = new BookController();
+            $page->deleteBook();
             break;
         case 'message': 
             break;

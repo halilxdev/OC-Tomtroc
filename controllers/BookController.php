@@ -140,6 +140,67 @@ class BookController
         ]);
     }
 
+    public function showAddBook() : void
+    {
+        Utils::checkIfUserIsConnected();
+        $view = new View("Ajout d'un livre");
+        $view->render("book-add");
+    }
+
+    public function addBook() : void
+    {
+        Utils::checkIfUserIsConnected();
+
+        $userManager = new UserManager();
+        $uploader = $userManager->getUserById($_SESSION['idUser']);
+        $uploaderId = $uploader->getId();
+        if (null !== Utils::request("title")) {
+            $titleInput = Utils::request("title");
+        }
+        if (null !== Utils::request("author")) {
+            $authorInput = Utils::request("author");
+        }
+        if (null !== Utils::request("desc")) {
+            $descInput = Utils::request("desc");
+        }
+        if (null !== Utils::request("status")) {
+            $statusInput = Utils::request("status");
+            if (!in_array($statusInput, ["available", "unavailable"])) {
+                $statusInput = "available";
+            }
+        }
+        if (isset($_FILES['book-cover']) && $_FILES['book-cover']['error'] === UPLOAD_ERR_OK) {
+            $fileTmp = $_FILES['book-cover']['tmp_name'];
+            $fileName = $_FILES['book-cover']['name'];
+            $fileSize = $_FILES['book-cover']['size'];
+            $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+            $allowed = ['jpg', 'jpeg', 'png'];
+            $newFileName = uniqid("book-cover_") . "." . $fileExt;
+            move_uploaded_file($fileTmp, "./public/images/book-covers/" . $newFileName);
+            $bookCover = "public/images/book-covers/" . $newFileName;
+        }else{
+            $bookCover = 'https://dhmckee.com/wp-content/uploads/2018/11/defbookcover-min.jpg';
+        }
+        $bookManager = new BookManager();
+        $bookManager->addBook($titleInput, $authorInput, $bookCover, $descInput, $statusInput, $uploaderId);
+        $lastBook = $bookManager->getLastBook();
+        $lastBookId = $lastBook->getId();
+        Utils::redirect("book-detail", ['id' => $lastBookId]);
+    }
+
+    public function deleteBook() : void
+    {
+        Utils::checkIfUserIsConnected();
+        $id = Utils::request("id", -1);
+        $bookManager = new BookManager();
+        $book = $bookManager->getBookById($id);
+        if (!$book) {
+            throw new Exception("Le livre n'existe pas n'existe pas.");
+        }
+        $bookManager->deleteBook($book);
+        Utils::redirect("home");
+    }
+
     public function showPrivacy() : void
     {
         $view = new View("Politique de confidentialité");
