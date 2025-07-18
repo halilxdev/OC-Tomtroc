@@ -77,6 +77,10 @@ try {
             break;
         case 'edit-book':
             $page = new BookController();
+            $page->showEditBook();
+            break;
+        case 'updateBook':
+            $page = new BookController();
             $page->editBook();
             break;
         case 'deleteBook': 

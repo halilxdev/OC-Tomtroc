@@ -15,8 +15,8 @@
             </div>
 
             <div class="updateBookCover">
-                <label for="bookCoverUpdate" class="bookCoverUpdate">Ajouter une photo</label>
-                <input form="updateBook" style="display: none;" type="file" id="bookCoverUpdate" name="bookCoverUpdate" accept="image/png, image/jpeg"/>
+                <label for="bookCoverAdd" class="bookCoverUpdate">Ajouter une photo</label>
+                <input form="updateBook" style="display: none;" type="file" id="bookCoverAdd" name="bookCoverAdd" accept="image/png, image/jpeg"/>
             </div>
            
         </div>

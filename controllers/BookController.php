@@ -51,8 +51,6 @@ class BookController
         ]);
     }
 
-
-
     public function showList() : void
     {
         $bookManager = new BookManager();
@@ -104,12 +102,12 @@ class BookController
         $bookDetail['uploader_username'] = $bookUser->getUsername();
         $bookDetail['uploader_image'] = $bookUser->getProfilePicture();
 
-        $view = new View("Nos livres");
+        $view = new View("{$bookDetail['title']}");
         $view->render("book-detail", [
             'book' => $bookDetail
         ]);
     }
-    public function editBook() : void
+    public function showEditBook() : void
     {
         Utils::checkIfUserIsConnected();
 
@@ -129,15 +127,84 @@ class BookController
         $bookDetail['creation_date'] = Utils::formatDate($book->getCreatedAt());
         $bookDetail['uploader_id'] = $bookUser->getId();
 
-        $errorMsg = [];
         if($bookDetail['uploader_id'] !== $_SESSION['idUser']){
             Utils::redirect("home");
-        } // Gestion erreur si pas le droit de modifier un livre.
+        }
 
         $view = new View("Édition d'un livre");
         $view->render("book-edit", [
             'book' => $bookDetail
         ]);
+    }
+    public function editBook() : void
+    {
+        Utils::checkIfUserIsConnected();
+
+        // Récupération du livre actuel
+        $bookManager = new BookManager();
+        $book = $bookManager->getBookById($_GET['id']);
+        
+        // Uploader du livre
+        $userManager = new UserManager();
+        $bookUser = $userManager->getUserById($book->getCreatedBy());
+
+        // Anciennes infos du livre
+        $bookDetail['id'] = $book->getId();
+        $bookDetail['title'] = $book->getTitle();
+        $bookDetail['author'] = $book->getAuthor();
+        $bookDetail['cover'] = $book->getCoverImage();
+        $bookDetail['description'] = $book->getDescription();
+        $bookDetail['status'] = $book->getStatus();
+        $bookDetail['creation_date'] = Utils::formatDate($book->getCreatedAt());
+        $bookDetail['uploader_id'] = $bookUser->getId();
+
+        // Vérification si auteur = bon
+        if($bookDetail['uploader_id'] !== $_SESSION['idUser']){
+            Utils::redirect("home");
+        }
+
+        // Récupération conditionnelle des champs du formulaire
+        if (null !== Utils::request("title")) {
+            $titleInput = Utils::request("title");
+        }else{
+            $titleInput = $bookDetail['title'];
+        }
+
+        if (null !== Utils::request("author")) {
+            $authorInput = Utils::request("author");
+        }else{
+            $authorInput = $bookDetail['author'];
+        }
+
+        if (null !== Utils::request("description")) {
+            $descriptionInput = Utils::request("description");
+        }else{
+            $descriptionInput = $bookDetail['description'];
+        }
+
+        if (null !== Utils::request("status")) {
+            $statusInput = Utils::request("status");
+        }else{
+            $statusInput = $bookDetail['status'];
+        }
+
+
+        if (isset($_FILES['bookCoverUpdate']) && $_FILES['bookCoverUpdate']['error'] === UPLOAD_ERR_OK) {
+            $fileTmp = $_FILES['bookCoverUpdate']['tmp_name'];
+            $fileName = $_FILES['bookCoverUpdate']['name'];
+            $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+            $newFileName = uniqid("bookCover_") . "." . $fileExt;
+            move_uploaded_file($fileTmp, "./public/images/books/" . $newFileName);
+            $bookCover = "public/images/books/" . $newFileName;
+        }else{
+            $bookCover = $bookDetail['cover'];
+        }
+
+        // MAJ livre
+        $bookManager->updateBook($bookDetail['id'], $titleInput, $authorInput, $bookCover, $descriptionInput, $statusInput);
+
+        // Redirection OK
+        Utils::redirect("book-detail", ['id' => $bookDetail['id']]);
     }
 
     public function showAddBook() : void
@@ -169,15 +236,13 @@ class BookController
                 $statusInput = "available";
             }
         }
-        if (isset($_FILES['book-cover']) && $_FILES['book-cover']['error'] === UPLOAD_ERR_OK) {
-            $fileTmp = $_FILES['book-cover']['tmp_name'];
-            $fileName = $_FILES['book-cover']['name'];
-            $fileSize = $_FILES['book-cover']['size'];
+        if (isset($_FILES['bookCoverAdd']) && $_FILES['bookCoverAdd']['error'] === UPLOAD_ERR_OK) {
+            $fileTmp = $_FILES['bookCoverAdd']['tmp_name'];
+            $fileName = $_FILES['bookCoverAdd']['name'];
             $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-            $allowed = ['jpg', 'jpeg', 'png'];
-            $newFileName = uniqid("book-cover_") . "." . $fileExt;
-            move_uploaded_file($fileTmp, "./public/images/book-covers/" . $newFileName);
-            $bookCover = "public/images/book-covers/" . $newFileName;
+            $newFileName = uniqid("bookCover_") . "." . $fileExt;
+            move_uploaded_file($fileTmp, "./public/images/books/" . $newFileName);
+            $bookCover = "public/images/books/" . $newFileName;
         }else{
             $bookCover = 'https://dhmckee.com/wp-content/uploads/2018/11/defbookcover-min.jpg';
         }
