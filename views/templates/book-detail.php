@@ -42,13 +42,14 @@
                 </a>
             </div>
             
-            <?php if($_SESSION['idUser'] !== $book['uploader_id']){ ?>
-            <div class="classic-button">
-                <a href="./index.php?action=send-message&id=<?=$book['uploader_id']?>">
-                    Envoyer un message
-                </a>
-            </div>
-            <?php } ?>
+            <?php if(isset($_SESSION['user'])){
+                if($_SESSION['idUser'] !== $book['uploader_id']){ ?>
+                <div class="classic-button">
+                    <a href="./index.php?action=listOfMsg&fromUser=<?=$book['uploader_id']?>">
+                        Envoyer un message
+                    </a>
+                </div>
+            <?php } } ?>
 
         </div>
     </div>
