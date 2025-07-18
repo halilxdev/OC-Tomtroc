@@ -69,7 +69,6 @@ class MessageManager extends AbstractEntityManager
         return $messages;
     }
 
-
     public function getNbOfUnseen($user): int
     {
         $sql = "SELECT * FROM messages WHERE to_user = :to_user AND status = 'unseen'";
@@ -80,4 +79,19 @@ class MessageManager extends AbstractEntityManager
         }
         return $nb;
     }
+
+    public function sendNewMsg($from, $to, $content): void
+    {
+        $sql = "INSERT INTO messages (from_user, to_user, content, status, sent_at)
+                VALUES (:from_user, :to_user, :content, :status, :sent_at)";
+
+        $this->db->query($sql, [
+            'from_user' => $from,
+            'to_user'   => $to,
+            'content'   => $content,
+            'status'    => 'unseen',
+            'sent_at'   => (new DateTime())->format('Y-m-d H:i:s')
+        ]);
+    }
+
 }

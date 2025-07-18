@@ -44,8 +44,8 @@
                     </div>
 
                     <div class="sendMsg">
-                        <form class="sendMsgForm" action="./index.php?action=sendMsg" method="post">
-                            <input autofocus type="text" id="content" name="content" placeholder="Tapez votre message ici">
+                        <form class="sendMsgForm" action="index.php?action=listOfMsg&fromUser=<?= $receiver['id'] ?>" method="post">
+                            <input autofocus type="text" name="content" placeholder="Tapez votre message ici">
                             <button class="classic-button">Envoyer</button>
                         </form>
                     </div>

@@ -6,8 +6,8 @@
 
             <h2>Nos livres à l'échange</h2>
 
-            <form method="get" action="">
-                <input type="hidden" name="action" value="listBooks">
+            <form method="get" action="./index.php?action=books-list">
+                <input type="hidden" name="action" value="books-list">
                 <input type="text" name="search" placeholder="Rechercher un livre">
                 <button type="submit"></button>
             </form>

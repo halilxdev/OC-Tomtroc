@@ -113,6 +113,7 @@
 
 .convoDetail{
     flex-grow: 1;
+    width: 548px;
     height: 100%;
     display: flex;
     justify-content: center;
