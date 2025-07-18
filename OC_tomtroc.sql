@@ -67,16 +67,17 @@ CREATE TABLE `messages` (
   `from_user` int(11) NOT NULL,
   `to_user` int(11) NOT NULL,
   `content` varchar(200) NOT NULL,
-  `sent_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `sent_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status` enum('seen','unseen') NOT NULL DEFAULT 'unseen'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `messages`
 --
 
-INSERT INTO `messages` (`id`, `from_user`, `to_user`, `content`, `sent_at`) VALUES
-(1, 3, 1, 'Hello 👋', '2025-07-17 11:24:20'),
-(2, 1, 3, 'Hey !', '2025-07-17 11:27:31');
+INSERT INTO `messages` (`id`, `from_user`, `to_user`, `content`, `sent_at`, `status`) VALUES
+(1, 3, 1, 'Hello 👋', '2025-07-17 11:24:20', 'unseen'),
+(2, 1, 3, 'Hey !', '2025-07-17 11:27:31', 'unseen');
 
 -- --------------------------------------------------------
 
@@ -138,7 +139,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT pour la table `messages`

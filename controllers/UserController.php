@@ -235,8 +235,6 @@ class UserController
                 move_uploaded_file($fileTmp, "./public/images/profile-pictures/" . $newFileName);
                 $avatar = "public/images/profile-pictures/" . $newFileName;
             }
-        }else{
-            $avatar = "https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg";
         }
 
         

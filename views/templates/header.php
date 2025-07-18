@@ -1,5 +1,5 @@
 <?php
-    $nbOfUnreadMsg = 14;
+    $nbOfUnreadMsg = $nbOfUnseenMsg;
 ?>
 
 <div class="header">

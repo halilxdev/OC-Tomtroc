@@ -1,0 +1,17 @@
+.message-list{
+    width: 100%;
+    height: calc(100vh - 80px - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--light-gray);
+}
+.message-list-container{
+    width: var(--content-width);
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 0;
+    padding: 0;
+}

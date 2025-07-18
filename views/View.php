@@ -33,6 +33,12 @@ class View
         // Les deux variables ci-dessous sont utilisées dans le "main.php" qui est le template principal.
         $content = $this->_renderViewFromTemplate($viewPath, $params);
         $title = $this->title;
+
+        $nbOfUnseenMsg = 0;
+        if(isset($_SESSION['user'])){
+            $MessageManager = new MessageManager();
+            $nbOfUnseenMsg = $MessageManager->getNbOfUnseen($_SESSION['idUser']);
+        }
         ob_start();
         require(MAIN_VIEW_PATH);
         echo ob_get_clean();

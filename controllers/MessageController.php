@@ -8,7 +8,11 @@ class MessageController
      */
     public function showList() : void
     {
+        $MessageManager = new MessageManager();
+        $messages = $MessageManager->getAllMessagesForUser($_SESSION['idUser']);
         $view = new View("Messages");
-        $view->render("message-list");
+        $view->render("message-list", [
+            'messages'      => $messages
+        ]);
     }
 }
