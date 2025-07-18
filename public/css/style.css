@@ -58,6 +58,9 @@ pre{
     transition: background-color 0.1s;
     cursor: pointer;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .classic-button:hover{
     color: var(--white);

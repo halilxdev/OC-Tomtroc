@@ -51,28 +51,34 @@ class BookController
         ]);
     }
 
-    public function showList() : void
+    public function showList(): void
     {
         $bookManager = new BookManager();
-        $books = $bookManager->getAllBooks();
-        
         $userManager = new UserManager();
 
+        $searchTerm = isset($_GET['search']) ? trim($_GET['search']) : null;
+
+        if ($searchTerm) {
+            $books = $bookManager->searchBooksByTitle($searchTerm);
+        } else {
+            $books = $bookManager->getAllBooks();
+        }
+
         $books = array_slice($books, 0, 16);
+
         $booklist = [];
-        foreach($books as $b){
+        foreach ($books as $b) {
             $actualUser = $userManager->getUserById($b->getCreatedBy());
-            $actualUserUsername = $actualUser->getUsername();
-            $booklist[] = 
-            [
-                'id'                    => $b->getId(),
-                'cover_image'           => $b->getCoverImage(),
-                'title'                 => $b->getTitle(),
-                'author'                => $b->getAuthor(),
-                'uploader_username'     => $actualUserUsername,
-                'creation_date'         => $b->getCreatedAt()
+            $booklist[] = [
+                'id'                => $b->getId(),
+                'cover_image'       => $b->getCoverImage(),
+                'title'             => $b->getTitle(),
+                'author'            => $b->getAuthor(),
+                'uploader_username' => $actualUser->getUsername(),
+                'creation_date'     => $b->getCreatedAt()
             ];
         }
+
         usort($booklist, fn($a, $b) => $b['creation_date'] <=> $a['creation_date']);
 
         $view = new View("Nos livres");
@@ -80,6 +86,7 @@ class BookController
             'books' => $booklist
         ]);
     }
+
 
     public function showBook() : void
     {

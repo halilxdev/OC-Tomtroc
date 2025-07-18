@@ -22,7 +22,7 @@ class Message extends AbstractEntity
 	public function setToUser(int $to_user) : void 
 	{
 		$userManager = new UserManager();
-		$this->from_user = $userManager->getUserById($to_user);
+		$this->to_user = $userManager->getUserById($to_user);
 	}
 	public function getToUser() : Object 
 	{

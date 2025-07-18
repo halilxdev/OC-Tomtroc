@@ -15,3 +15,239 @@
     gap: 0;
     padding: 0;
 }
+.sidebar{
+    width: 308px;
+    height: 100%;
+    background-color: var(--light-background);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 0;
+    padding: 0;
+}
+.sidebar .title{
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: start;
+    align-items: end;
+    padding: 50px;
+}
+.sidebar .title h2{
+    font-family: 'Playfair Display', sans-serif;
+    font-size: 26px;
+    font-weight: 400;
+}
+
+.listOfConvos{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.convoPack{
+    width: 100%;
+    height: fit;
+}
+.convoPack a{
+    background-color: none;
+    width: 100%;
+    height: 84px;
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    gap: 0px;
+    cursor: pointer;
+}
+.convoPack a:hover{
+    background-color: var(--white);
+}
+/* .unseenPack a{
+    background-color: #EDF2F6;
+} */
+.convoPack a .profilePicture{
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    padding: 10px;
+}
+.convoPack a .profilePicture img{
+    width: 80%;
+    border-radius: 10000px;
+    aspect-ratio: 1/1;
+}
+
+.convoPack a .convoInfos{
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: start;
+    padding: 20px 10px;
+    gap: 10px;
+}
+.convoPack a .convoInfos .convoMeta{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+.convoPack a .convoInfos .convoMsg{
+    color: var(--text-gray);
+    font-size: 12px;
+}
+
+.convoDetail{
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.notChattingMenu{
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    color: var(--text-gray);
+}
+.notChattingMenu img{
+    width: 140px;
+    height: auto;
+    filter: opacity(0.3);
+}
+
+.selectedChat{
+    width: 100%;
+    height: 100%;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    gap: 10px;
+}
+
+.receiverInfo{
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+}
+.receiverInfo a{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+}
+.receiverInfo a img{
+    width: 48px;
+    height: 48px;
+    border-radius: 300px;
+}
+.receiverInfo a p{
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--dark-gray);
+}
+
+.sendMsg{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sendMsgForm{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+.sendMsgForm input, .sendMsgForm button{
+    height: 50px;
+}
+.sendMsgForm input{
+    width: 628px;
+    overflow-y: scroll;
+    padding: 10px;
+    stroke: none;
+    outline: none;
+    border: solid 1px #F0F0F0;
+    background-color: #fff;
+    border-radius: 6px;
+}
+
+
+.chatList{
+    flex-grow: 1;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+    gap: 10px;
+}
+.chat{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    height: 40px;
+    border-radius: 3px;
+}
+.chatReceived{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.chatSent{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.chatSent .content{
+    background-color: #EDF2F6;
+    padding: 10px;
+    border-radius: 3px;
+    height: 100%;
+}
+.chatReceived .content{
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 3px;
+    height: 100%;
+}
+.chat .sender a img{
+    width: 24px;
+    height: 24px;
+    border-radius: 100px;
+}

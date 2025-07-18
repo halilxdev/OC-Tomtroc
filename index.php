@@ -67,6 +67,8 @@ try {
             $page = new MessageController();
             $page->showList();
             break;
+        case 'sendMessage':
+            break;
         case 'add-book': 
             $page = new BookController();
             $page->showAddBook();
@@ -86,10 +88,6 @@ try {
         case 'deleteBook': 
             $page = new BookController();
             $page->deleteBook();
-            break;
-        case 'message': 
-            break;
-        case 'send-message':
             break;
 
         default:
